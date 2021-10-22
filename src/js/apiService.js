@@ -19,7 +19,7 @@ export default class PicturesAPI {
     let endpoints = `&q=${this._query}&page=${this.page}&per_page=${this.imagesPerPage}`;
     let url = this.BASE_URL + endpoints + this.API_KEY;
     const response = await fetch(url);
-    // console.log('что идет в запрос: ', this.page, this._query)
+    
     return response.json();
   }
 

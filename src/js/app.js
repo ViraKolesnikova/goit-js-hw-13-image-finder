@@ -11,18 +11,18 @@ const { containerRef, resultRef, loadMoreBtnRef } = refs;
 
 const picturesAPI = new PicturesAPI();
 
-
 insertTemplate(formTemplate, containerRef);
 
 
 const inputRef = document.querySelector('.search-input');
-inputRef.addEventListener('input', debounce(onInputSearch, 1500));
+inputRef.addEventListener('input', debounce(onInputSearch, 1000));
 
 
 function onInputSearch(event) {
   let searchValue = event.target.value;
   if (searchValue.trim() !== '') {
     clearPage();
+    loadMoreBtnRef.removeEventListener('click', onLoadMoreClick);
     loadMoreBtnRef.classList.add('is-hidden');
     
     picturesAPI.query = searchValue;
@@ -77,7 +77,6 @@ function onPictureClick(event) {
   const instance = basicLightbox.create(`
   <img src='${event.target.dataset.source}' alt='${event.target.alt}'>
 `)
-  
   instance.show()
 }
 
